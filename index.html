@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teachable Machine Upload</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="tabler/dist/js/tabler.min.js?1692870487" defer></script>
+    <script src="tabler/dist/js/demo.min.js?1692870487" defer></script>
+    <link href="tabler/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
+    <script type="text/javascript" src="js/model_webcam.js"></script>
+    <script type="text/javascript" src="js/upload_image.js"></script>
+    <style>
+      #preview {
+        max-width: 300px;
+        max-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- navbar -->
+      <div class="mb-3">
+        <header class="navbar navbar-expand-md d-print-none">
+          <div class="container-xl">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-menu"
+              aria-controls="navbar-menu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1
+              class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3"
+            >
+              <a href=".">Dashboard</a>
+            </h1>
+            <div class="navbar-nav flex-row order-md-last">
+              <div class="d-none d-md-flex"></div>
+              <div class="nav-item dropdown">
+                <a
+                  href="#"
+                  class="nav-link d-flex lh-1 text-reset p-0"
+                  data-bs-toggle="dropdown"
+                  aria-label="Open user menu"
+                >
+                  <div class="d-none d-xl-block ps-2">
+                    <div class="d-flex align-items-center">
+                      <div data-testid="user_info">
+                        Kian O'Connor
+                        <div class="mt-1 small text-secondary">
+                          kian.oconnor003@gmail.com
+                        </div>
+                      </div>
+
+                      <span class="avatar avatar-sm mx-1">KO</span>
+                    </div>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                >
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" onClick="">Logout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <header class="navbar-expand-md">
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <div class="navbar">
+              <div class="container-xl">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">
+                      <span class="nav-link-title">Early Blight</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">
+                      <span class="nav-link-title">Late Blight</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">
+                      <span class="nav-link-title">Anthracnose</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">
+                      <span class="nav-link-title">Trained Model</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div class="page-wrapper">
+        <div class="page-wrapper">
+          <div class="page-header d-print-none">
+            <div class="container-xl">
+              <div class="page-title">Tomato Plant Diseases</div>
+            </div>
+          </div>
+          <div class="page-body">
+            <div class="container-xl">
+              <div class="row row-cards">
+                <div class="col-md-12 col-xs-12">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                          <h2 class="mb-3">Early Blight</h2>
+                          <hr />
+                          This disease is caused by the fungi Alternaria
+                          linariae (formally known as A. solani) and is first
+                          observed on the plants as small, brown lesions mostly
+                          on the older foliage. Spots enlarge and concentric
+                          rings in a bull’s-eye pattern may be seen in the
+                          center of the diseased area. The tissue surrounding
+                          the spots may turn yellow. If high temperature and
+                          humidity occur at this time, much of the foliage is
+                          killed. Lesions on the stems are similar to those on
+                          leaves and sometimes girdle the plant if they occur
+                          near the soil line (collar rot). On the fruits,
+                          lesions attain considerable size, usually involving
+                          nearly the entire fruit. Concentric rings are also
+                          present on the fruit. Infected fruit frequently drops.
+                          The fungus survives on infected debris in the soil, on
+                          seed, on volunteer tomato plants, and other
+                          solanaceous hosts, such as Irish potato, eggplant, and
+                          black nightshade (a common, related weed).
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                          <img
+                            src="images/early_blight.jpeg"
+                            alt=""
+                            class="w-100"
+                            style="height: 100%"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                          <img
+                            src="images/late_blight.jpeg"
+                            alt=""
+                            class="w-100"
+                            style="height: 100%"
+                          />
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                          <h2 class="mb-3">Late Blight</h2>
+                          <hr />
+                          Late blight is a potentially serious disease of potato
+                          and tomato and is caused by the water mold pathogen
+                          Phytophthora infestans. Late blight is especially
+                          damaging during cool, wet weather. This pathogen can
+                          affect all plant parts. Young leaf lesions are small
+                          and appear as dark, water-soaked spots. These leaf
+                          spots will quickly enlarge, and a white mold will
+                          appear at the margins of the affected area on the
+                          lower surface of leaves. Complete defoliation
+                          (browning and shriveling of leaves and stems) can
+                          occur within 14 days from the first symptoms. Infected
+                          tomato fruits develop shiny, dark, or olive-colored
+                          lesions, which may cover large areas. Fungal spores
+                          are spread between plants and gardens by rain and
+                          wind. A combination of daytime temperatures in the
+                          upper 70s °F with high humidity is ideal for
+                          infection.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                          <h2 class="mb-3">Anthracnose</h2>
+                          <hr />
+                          Anthracnose on tomatoes is caused by a group of fungi
+                          within the genus Colletotrichum, and these species are
+                          primarily pathogens of the tomato fruit. As the fruit
+                          are ripening, the symptoms first become noticeable as
+                          small, circular indented areas, which later develop
+                          darkened centers. The diseased spots continue to grow
+                          larger with time as each infection site also spreads
+                          deeper into the fruit. With warm, moist, and humid
+                          weather (from rainfall or overhead irrigation), the
+                          fungus produces salmon-colored spores that are exuded
+                          from the black fungal material in the center of the
+                          spots. These spores are spread by splashing
+                          water.Because this disease affects other plants in the
+                          tomato family (Solanaceae), such as eggplants and
+                          peppers, the site for the tomatoes should not be
+                          planted again with solanaceous plants for at least a
+                          year. Some weeds that infest the garden are also in
+                          the same family, which is another reason to keep the
+                          garden free of weeds. Fungal spores can remain in the
+                          soil to infect plants the following year. Mulching the
+                          garden helps create a barrier between the soil surface
+                          and the fruit to reduce infections.
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                          <img
+                            src="images/anthracnose.jpg"
+                            alt=""
+                            class="w-100"
+                            style="height: 100%"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col">
+                          <h2 class="mb-3">Detect Type of Exercise</h2>
+                        </div>
+                        <div class="col-auto">
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-primary"
+                              type="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Options to use Model
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <button
+                                  class="nav-link"
+                                  onclick="showImageUpload()"
+                                >
+                                  Upload Image
+                                </button>
+                              </li>
+                              <li>
+                                <button class="nav-link" onclick="init()">
+                                  Use webcam
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col">
+                          <div id="image_upload_div" style="display: none">
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="imageUpload"
+                              onchange="handleImageUpload(event)"
+                            />
+                          </div>
+                          <div id="webcam-container"></div>
+                        </div>
+                        <div class="col">
+                          <div id="result"></div>
+                          <div id="label-container"></div>
+                          <img
+                            id="preview"
+                            src="#"
+                            alt="Image Preview"
+                            style="display: none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
